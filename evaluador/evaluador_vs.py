@@ -17,6 +17,8 @@ E = "joeddav/distilbert-base-uncased-go-emotions-student"
 
 ABL_a = "mrovejaxd/ABL_a"
 ABL_b = "mrovejaxd/ABL_b"
+ABL_c = "mrovejaxd/ABL_c"
+ABL_d = "mrovejaxd/ABL_d"
 
 #precargar los modelos para tener una salida limpia
 aclassifier = pipeline("text-classification",model= a)
@@ -44,6 +46,10 @@ fclassifier = pipeline("text-classification", model= f)
 ABL_aclassifier = pipeline("text-classification", model= ABL_a)
 
 ABL_bclassifier = pipeline("text-classification", model= ABL_b)
+
+ABL_cclassifier = pipeline("text-classification", model= ABL_c)
+
+ABL_dclassifier = pipeline("text-classification", model= ABL_d)
 
 #c y d sacan valores demasiado altos y por la cara, A y B parece que son solo ingles, D y E no los uso por razones similares 
 

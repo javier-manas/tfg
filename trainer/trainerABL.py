@@ -1,13 +1,22 @@
 import pandas as pd
 import torch
 from datasets import load_dataset
+import logging
+
+# Configurar el nivel de registro en WARNING o ERROR
+logging.basicConfig(level=logging.WARNING)
+
 
 if not (torch.cuda.is_available()):
     print("no")
+    
+print(torch.cuda.device_count())
+
 
 # Load data
 from datasets import load_dataset
 ds = load_dataset("mrovejaxd/ABLDSArr11_07")
+print("training")
 
 # Create a smaller training dataset for faster training times
 small_train_dataset = ds["train"].shuffle(seed=42).select([i for i in list(range(12000))])
@@ -19,7 +28,11 @@ pretrainedmodel = "dccuchile/bert-base-spanish-wwm-cased"
 
 # Set DistilBERT tokenizer
 from transformers import AutoTokenizer
+print("training")
+
 tokenizer = AutoTokenizer.from_pretrained(pretrainedmodel)
+print("training")
+
 
 # Prepare the text inputs for the model
 def preprocess_function(examples):
@@ -56,14 +69,14 @@ def compute_metrics(eval_pred):
 from transformers import TrainingArguments, Trainer
 from transformers.optimization import Adafactor, AdafactorSchedule
 
-repo_name = "ABL_b"
+repo_name = "ABL_d"
 
 training_args = TrainingArguments(
     output_dir=repo_name,
     learning_rate=1e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=7,
+    num_train_epochs=1,
     weight_decay=0.001,
     save_strategy="epoch", 
     push_to_hub=True,
@@ -85,6 +98,7 @@ trainer = Trainer(
 )
 
 # Train the model
+print("training")
 trainer.train()
 
 # Upload the model to the Hub

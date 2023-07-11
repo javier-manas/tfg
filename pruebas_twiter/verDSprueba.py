@@ -10,7 +10,8 @@ dataset = load_dataset("mrovejaxd/ABLDSArr19_06")
 # Obtener una vista previa de los primeros N ejemplos del dataset
 print(dataset)
 
-
+df = pd.DataFrame(dataset)
+print(df)
 
 
 
