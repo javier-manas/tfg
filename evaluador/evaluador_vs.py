@@ -68,12 +68,12 @@ dicABL={0: 'leech', 1: 'bee', 2: 'ant'}
 
 #codigo para obtener los resultados 
 
-#valores modificables --------
+#valores modificables ---------
 lista_frases = lista_frases3
 ABL = ABL_a
 listamodelos = [a, b, c, d, e, f]
 listamodelos = [a]
-#valores modificables +++++++++
+#valores modificables ++++++++++ 
 
 ABLcompendio = []
 
