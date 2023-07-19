@@ -20,36 +20,44 @@ ABL_b = "mrovejaxd/ABL_b"
 ABL_c = "mrovejaxd/ABL_c"
 ABL_d = "mrovejaxd/ABL_d"
 
+FNST_a = "mrovejaxd/FNST_a"
+FNST_b = "mrovejaxd/FNST_b"
+
 #precargar los modelos para tener una salida limpia
-aclassifier = pipeline("text-classification",model= a)
+if 1==2:
+        aclassifier = pipeline("text-classification",model= a)
 
-bclassifier = pipeline("text-classification", model= b)
+        bclassifier = pipeline("text-classification", model= b)
 
-cclassifier = pipeline("text-classification", model= c)
+        cclassifier = pipeline("text-classification", model= c)
 
-dclassifier = pipeline("text-classification", model= d)
+        dclassifier = pipeline("text-classification", model= d)
 
-eclassifier = pipeline("text-classification", model= e)
+        eclassifier = pipeline("text-classification", model= e)
 
-Aclassifier = pipeline("text-classification", model= A)
+        Aclassifier = pipeline("text-classification", model= A)
 
-Bclassifier = pipeline("text-classification", model= B)
+        Bclassifier = pipeline("text-classification", model= B)
 
-Cclassifier = pipeline("text-classification", model= C)
+        Cclassifier = pipeline("text-classification", model= C)
 
-Dclassifier = pipeline("text-classification", model= D)
+        Dclassifier = pipeline("text-classification", model= D)
 
-Eclassifier = pipeline("text-classification", model= E)
+        Eclassifier = pipeline("text-classification", model= E)
 
-fclassifier = pipeline("text-classification", model= f)
+        fclassifier = pipeline("text-classification", model= f)
 
-ABL_aclassifier = pipeline("text-classification", model= ABL_a)
+        ABL_aclassifier = pipeline("text-classification", model= ABL_a)
 
-ABL_bclassifier = pipeline("text-classification", model= ABL_b)
+        ABL_bclassifier = pipeline("text-classification", model= ABL_b)
 
-ABL_cclassifier = pipeline("text-classification", model= ABL_c)
+        ABL_cclassifier = pipeline("text-classification", model= ABL_c)
 
-ABL_dclassifier = pipeline("text-classification", model= ABL_d)
+        ABL_dclassifier = pipeline("text-classification", model= ABL_d)
+
+        FNST_aclassifier = pipeline("text-classification", model= FNST_a)
+
+        FNST_bclassifier = pipeline("text-classification", model= FNST_b)
 
 #c y d sacan valores demasiado altos y por la cara, A y B parece que son solo ingles, D y E no los uso por razones similares 
 
@@ -59,6 +67,8 @@ lista_frases1 = ["frase numero uno", "Cuando me siento triste escucho música.",
 lista_frases2 = ["quiero el amor y ayudar", "no me gusta lo que odio y matar", "lloro cuando veo cosas tristes"]
 lista_frases3 = ["Hoy es el mejor día de mi vida!", "Ya estoy harto de tus excusas!", "Siento un dolor profundo en el corazón que parece no tener fin."]
 lista_frases4 = ["Cuando me siento triste escucho música."]
+lista_frases5 = ["Viva dios la patria y el rey", "ayer desarrolle una nueva inteligencia artificial", "El camino del alma es estar en paz consigo misma", "necesitamos reciclar para salvar al planeta"]
+
 
 midic={0: 'admiration', 1: 'amusement', 2: 'anger', 3: 'annoyance', 4: 'approval', 5: 'caring', 6: 'confusion', 7: 'curiosity', 8: 'desire', 9: 'disappointment', 10: 'disapproval', 11: 'disgust', 12: 'embarrassment', 13: 'excitement', 14: 'fear', 15: 'gratitude', 16: 'grief', 17: 'joy', 18: 'love', 19: 'nervousness', 20: 'optimism', 21: 'pride', 22: 'realization', 23: 'relief', 24: 'remorse', 25: 'sadness', 26: 'surprise', 27: 'neutral'}
 
@@ -72,14 +82,27 @@ dicTribes={0: 'spiritualists', 1: 'nerds', 2: 'fatherlanders', 3: 'treehuggers'}
 
 dicABL={0: 'leech', 1: 'bee', 2: 'ant'}
 
+dicFNST={0: 'fatherlander', 1: 'nerd', 2: 'spiritualist', 3: 'treehugger'}
+
 #codigo para obtener los resultados 
 
 #valores modificables ---------
-lista_frases = lista_frases3
-ABL = ABL_a
+lista_frases = lista_frases5
+ABL = [ABL_a, ABL_b, ABL_c, ABL_d]
+FNST = [FNST_a, FNST_b]
 listamodelos = [a, b, c, d, e, f]
 listamodelos = [a]
 #valores modificables ++++++++++ 
+
+#salidas modificables ---------
+reajustamiento = False
+emocionessimplificadas = False
+valoreseticosporfrase = False
+ABLporfrase = False
+FNSTporfrase = True
+valoreseticostodoeltexto = False
+ABLtodoeltexto = False
+#salidas modificables ++++++++++ 
 
 ABLcompendio = []
 
@@ -116,7 +139,7 @@ for modelo in listamodelos:
         print("frase num " + str(i) + " : " + str(lista_frases[i]))
         print("")
         
-        ABLindex = i
+        index = i
         
         #calcular media
         mediavalores = np.mean(nuevalista)
@@ -125,7 +148,7 @@ for modelo in listamodelos:
        
     #ya no es necesario el reajustamiento
     
-        if 1 == 2:
+        if reajustamiento:
             listaaux= []
             factor = mediavalores/1
             #otro factor 0.0357 1
@@ -162,7 +185,7 @@ for modelo in listamodelos:
                        
 #emocionnes simplificadas por frase--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
-        if 1 == 1:
+        if emocionessimplificadas:
             
             #emocionnes simplificadas por frase
             Nmedia = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
@@ -186,7 +209,7 @@ for modelo in listamodelos:
 
 #valores eticos sicologos por frase--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
-        if 1 == 1:
+        if valoreseticosporfrase:
             #Sociologist Schwartz
             Nmedia = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
             media = salida
@@ -226,21 +249,36 @@ for modelo in listamodelos:
 
 #ant bee leech por frase--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        if 1 == 1:
-            #% de hormiga abeja o leech por frase
-            ABLclassifier = pipeline("text-classification",model= ABL, return_all_scores=True)
-            ABLanalizador = ABLclassifier(lista_frases[ABLindex])
-            print(ABLindex)
-            print("ant bee leech ")
-            print("")
-            for i in range(3):
-                    score = ABLanalizador[0][i]['score']
-                    print(f"{dicABL[i]}: {score}")
-                    ABLcompendio.append(score)
-            print("")
+        if ABLporfrase:
+            for abl in ABL:
+                #% de hormiga abeja o leech por frase
+                ABLclassifier = pipeline("text-classification",model= abl, return_all_scores=True)
+                ABLanalizador = ABLclassifier(lista_frases[index])
+                print("ant bee leech " + str(abl))
+                print("")
+                for i in range(3):
+                        score = ABLanalizador[0][i]['score']
+                        print(f"{dicABL[i]}: {score}")
+                        ABLcompendio.append(score)
+                print("")
+
             
 #ant bee leech por frase++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        
+
+#FNSTporfrase--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        if FNSTporfrase:
+             for fnst in FNST:
+                FNSTclassifier = pipeline("text-classification",model= fnst, return_all_scores=True)
+                FNSTanalizador = FNSTclassifier(lista_frases[index])
+                print("fatherlander nerd spiritualist treehuger" + str(fnst))
+                print("")
+                for i in range(4):
+                        score = FNSTanalizador[0][i]['score']
+                        print(f"{dicFNST[i]}: {score}")
+                        #FNSTcompendio.append(score)
+                print("")
+#FNSTporfrase++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       
         print("------------------------------------------------------------------------------------------------------------")
 
 #final
@@ -253,7 +291,7 @@ for modelo in listamodelos:
     print("") 
 
 #compendio final de la media de todas las frases--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-if 1 == 1:
+if valoreseticostodoeltexto:
         # salida con la media de todos los valores
         print()
         for o in range(len(lista_aux)):
@@ -327,7 +365,7 @@ if 1 == 1:
 
         
         #ant bee leech compendio--------------------------------------------------------------------------------------------------------------------------------------------------------
-        if 1 == 1:
+        if ABLtodoeltexto:
              #% de hormiga abeja o leech completo
             Antcom = [] 
             Beecom = []
