@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile_cuda",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "-o",
+                "output_name",
+                "source_file.cu"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

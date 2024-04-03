@@ -7,8 +7,7 @@ import logging
 logging.basicConfig(level=logging.WARNING)
 
 
-if not (torch.cuda.is_available()):
-    print("no")
+print(torch.cuda.is_available())
     
 print(torch.cuda.device_count())
 
@@ -69,14 +68,14 @@ def compute_metrics(eval_pred):
 from transformers import TrainingArguments, Trainer
 from transformers.optimization import Adafactor, AdafactorSchedule
 
-repo_name = "FNST_a"
+repo_name = "prueba_06_02"
 
 training_args = TrainingArguments(
     output_dir=repo_name,
     learning_rate=1e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=10,
+    num_train_epochs=2,
     weight_decay=0.001,
     save_strategy="epoch", 
     push_to_hub=True,
