@@ -1,13 +1,21 @@
 import pandas as pd
 import torch
 from datasets import load_dataset
+import logging
 
-if not (torch.cuda.is_available()):
-    print("no")
+# Configurar el nivel de registro en WARNING o ERROR
+logging.basicConfig(level=logging.WARNING)
+
+
+print(torch.cuda.is_available())
+    
+print(torch.cuda.device_count())
+
 
 # Load data
 from datasets import load_dataset
-ds = load_dataset("mrovejaxd/ABLDSArr11_07")
+ds = load_dataset("mrovejaxd/DS_FNST")
+print("training")
 
 # Create a smaller training dataset for faster training times
 small_train_dataset = ds["train"].shuffle(seed=42).select([i for i in list(range(12000))])
@@ -19,7 +27,11 @@ pretrainedmodel = "dccuchile/bert-base-spanish-wwm-cased"
 
 # Set DistilBERT tokenizer
 from transformers import AutoTokenizer
+print("training")
+
 tokenizer = AutoTokenizer.from_pretrained(pretrainedmodel)
+print("training")
+
 
 # Prepare the text inputs for the model
 def preprocess_function(examples):
@@ -34,7 +46,7 @@ data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 # Define DistilBERT as our base model:
 from transformers import BertForSequenceClassification
-model = BertForSequenceClassification.from_pretrained(pretrainedmodel, num_labels=3)
+model = BertForSequenceClassification.from_pretrained(pretrainedmodel, num_labels=4)
 
 # Define the evaluation metrics 
 import numpy as np
@@ -56,14 +68,14 @@ def compute_metrics(eval_pred):
 from transformers import TrainingArguments, Trainer
 from transformers.optimization import Adafactor, AdafactorSchedule
 
-repo_name = "ABL_b"
+repo_name = "prueba_04_04"
 
 training_args = TrainingArguments(
     output_dir=repo_name,
     learning_rate=1e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=7,
+    num_train_epochs=2,
     weight_decay=0.001,
     save_strategy="epoch", 
     push_to_hub=True,
@@ -85,11 +97,15 @@ trainer = Trainer(
 )
 
 # Train the model
+print("training")
 trainer.train()
-
-# Upload the model to the Hub
-trainer.push_to_hub()
 
 # Compute the evaluation metrics
 trainer.evaluate()
+
+if (False):
+    # Upload the model to the Hub
+    trainer.push_to_hub()
+
+
 
