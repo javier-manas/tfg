@@ -71,8 +71,3 @@ try:
     
 except Exception as e:
     print("D",e)
-
-
-
-
-

@@ -68,7 +68,7 @@ def compute_metrics(eval_pred):
 from transformers import TrainingArguments, Trainer
 from transformers.optimization import Adafactor, AdafactorSchedule
 
-repo_name = "prueba_04_04"
+repo_name = "ABL_b"
 
 training_args = TrainingArguments(
     output_dir=repo_name,
