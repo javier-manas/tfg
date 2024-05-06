@@ -1,14 +1,14 @@
 import json
 import itertools
 
-tribus = ['F', 'N', 'S', 'T']
+tribus = ['A', 'B', 'L']
 
 #dice cuantas tuplas tiene cada lista y cuantas tuplas una vez arreglada la lista
 for tribu in tribus:
 
 
     
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_trad_auto_' + tribu + ' .json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_' + tribu + '.json'
     with open(ruta) as json_file:
         data = json.load(json_file)    
 
@@ -26,7 +26,7 @@ for tribu in tribus:
 
 
     
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_trad_auto_' + tribu + ' .json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_' + tribu + '.json'
     with open(ruta) as json_file:
         data = json.load(json_file)    
     
@@ -34,11 +34,10 @@ for tribu in tribus:
     data = list(itertools.chain(*A))
 
     comments_json = json.dumps(data)
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_trad_auto_'+ tribu +'.json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_arr_' + tribu + '.json'
     jsonFile = open(ruta, "w")
     jsonFile.write(comments_json)
     jsonFile.close()
     print('termine '+ tribu)
     
-
 

@@ -7,8 +7,8 @@ import re
 from datasets import Dataset
 import pandas as pd
 
-tribus = ['F', 'N', 'S', 'T']
-
+tribus = ['A', 'B', 'L']
+cont=50000
 
 def extract_sentences(data):
     sentences = []
@@ -26,16 +26,17 @@ def remove_duplicates(lst):
 
 def gen():
     for tribe in tribus:
-        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_FNST_trad_mix' + tribe + '.json'
+        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_arr_' + tribe + '.json'
         with open(ruta) as json_file:
             data = json.load(json_file)
-
-        
+        global cont
+        print(tribe)
         frases = extract_sentences(data)
 
         frases = remove_duplicates(frases)
 
         for frase in frases:
+            cont = cont +1
             if tribe == 'F':
                 yield {"text": frase, "labels": 0}
             
@@ -48,6 +49,14 @@ def gen():
             if tribe == 'T':
                 yield {"text": frase, "labels": 3}
 
+            if tribe == 'A':
+                yield {"id": str(cont),"text": frase, "labels": 2}
+            
+            if tribe == 'B':
+                yield {"id": str(cont),"text": frase, "labels": 1}
+            
+            if tribe == 'L':
+                yield {"id": str(cont),"text": frase, "labels": 0}
 
 ds = Dataset.from_generator(gen)
 
@@ -66,8 +75,8 @@ try:
 
 
     #ds2.push_to_hub("mrovejaxd/DS_FNST", private=True)
-    ds2.save_to_disk(r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DS_FNST_trad')
+    ds2.save_to_disk(r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DS_ABL_trad')
     
     
 except Exception as e:
-    print("D",e)
+    print("D","s")

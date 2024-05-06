@@ -10,7 +10,7 @@ import pandas as pd
 
 
 model = EasyNMT('opus-mt')
-tribus = ['F','N','S','T']
+tribus = ['A', 'B', 'L']
 
 
 def inicio(data):
@@ -43,7 +43,7 @@ def trad(data):
         
 
 for tribe in tribus:
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_' + tribe + '.json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_' + tribe + '.json'
     with open(ruta) as json_file:
         data = json.load(json_file)
         
@@ -52,7 +52,7 @@ for tribe in tribus:
         comments_json = json.dumps(dataset)
 
         # saves comments in a json
-        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_trad_auto_'+ tribe +'.json'
+        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_'+ tribe +'.json'
         jsonFile = open(ruta, "w")
         jsonFile.write(comments_json)
         jsonFile.close()
