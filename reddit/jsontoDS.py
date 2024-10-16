@@ -7,7 +7,7 @@ import re
 from datasets import Dataset
 import pandas as pd
 
-tribus = ['A', 'B', 'L']
+tribus = ['F','N','S','T']
 cont=50000
 
 def extract_sentences(data):
@@ -26,7 +26,7 @@ def remove_duplicates(lst):
 
 def gen():
     for tribe in tribus:
-        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_trad_arr_' + tribe + '.json'
+        ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_FNST_trad_mix' + tribe + '.json'
         with open(ruta) as json_file:
             data = json.load(json_file)
         global cont
@@ -74,8 +74,8 @@ try:
     print(ds2)
 
 
-    #ds2.push_to_hub("mrovejaxd/DS_FNST", private=True)
-    ds2.save_to_disk(r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DS_ABL_trad')
+    ds2.push_to_hub("mrovejaxd/DS_FNST_sinpodemos", private=True)
+    ds2.save_to_disk(r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DS_FNST_sinpodemos')
     
     
 except Exception as e:

@@ -3,7 +3,7 @@ from unidecode import unidecode
 import re
 import itertools
 
-tribus = ['A', 'B', 'L']
+tribus = ['F','N','S','T']
 
 def guardar (data, tribu):
     comments_json = json.dumps(data)
@@ -15,7 +15,7 @@ def guardar (data, tribu):
 #arregla las listas para que no sean  listas de tuplas de frases sino listas de frases y junta dos datasets en uno
 for tribu in tribus:
 
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_' + tribu + '.json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsFNSTingles\DS_en_trad_auto_PPP' + tribu + '.json'
     with open(ruta) as json_file:
         data = json.load(json_file)  
 

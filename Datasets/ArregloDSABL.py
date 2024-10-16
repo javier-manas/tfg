@@ -13,7 +13,6 @@ ds2 = ds2.rename_column("tribe", "labels")
 ds2 = ds2.map(lambda example: {'labels': 0 if example['labels'] == 3 else example['labels']})
 
 df = pd.DataFrame(ds2)
-print(df)
 
 
 try:

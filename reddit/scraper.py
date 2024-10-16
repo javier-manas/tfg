@@ -36,6 +36,7 @@ def get_latest_submissions(tribe):
 
     if tribe == 'T':
         tribes = 'environment+ClimateAction+ZeroWaste'
+        tribes = 'veganismo+Curioseandoelmundo+Medioambiente+Permacultura'
 
     if tribe == 'A':
         tribes = 'nextfuckinglevel+sports+GYM'
@@ -64,20 +65,17 @@ def  gatherData(tribus):
 
 
     for submission in submissions:
-        #title =  translator.translate(clean_tweet(submission.title))
         title = clean_tweet(submission.title)
-        #selftext = translator.translate(clean_tweet(submission.selftext))
         selftext = clean_tweet(submission.selftext)
-        #if len(title) > 10:
-            #comments.append(title)
-        #if len(selftext) > 10:
-           # comments.append(selftext)
+        if len(title) > 15:
+            comments.append(title)
+        if len(selftext) > 15:
+            comments.append(selftext)
         submission.comments.replace_more(limit=15)
         for comment in submission.comments.list():
 
-            #body = translator.translate(clean_tweet(comment.body))
             body = clean_tweet(comment.body)
-            if len(body) > 10:
+            if len(body) > 15:
                 comments.append(body)
 
             if count % 30000 == 0:
@@ -99,14 +97,12 @@ def  gatherData(tribus):
     comments_json = json.dumps(comments)
 
     # saves comments in a json
-    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\DatasetsABLingles\DS_en_' + tribus + '.json'
+    ruta = r'D:\2 cosas\1 Curso upm\TFG 1\datasets\FNSTjson\DS_' + tribus + '.json'
     jsonFile = open(ruta, "w")
     jsonFile.write(comments_json)
     jsonFile.close()
 
-    time.sleep(240)
     print('continuing')
 
-gatherData('A')
-gatherData('B')
-gatherData('L')
+gatherData('T')
+
