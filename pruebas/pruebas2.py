@@ -138,15 +138,10 @@ ruta_fnst = r'D:\1 Mierdas\Escritorio\Textosfnst.txt'
 ruta_abl = r'D:\1 Mierdas\Escritorio\Textosabl.txt'
 
 
-ruta_jonathan = ruta_prueba
+#ruta_jonathan = ruta_prueba
 #analizarTextos(ruta_prueba,Jonathan)
 #analizarTextos(ruta_jonathan,Jonathan)
 #analizarTextos(ruta_Schawrtz,Schawrtz)
 #analizarTextos(ruta_abl,abl)
 #analizarTextos(ruta_fnst,fnst)
-
-
-
-print('fin\n')
-
 

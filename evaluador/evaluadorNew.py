@@ -101,22 +101,24 @@ lista_frases18 = ['Imaginémonos que cada cosa que hacemos tiene eco en los dem�
 lista_frases19 = ["Es curioso que un pueblo que despojó de la mayoría de poderes al monarca ahora le exija que haga aquello que le prohibieron. Incluso algunos sostienen -no sabemos si por ignorancia o por maldad- que el Rey podría haberse negado a firmarla y abdicar"]
 lista_frases20 = ['¡Qué increíble es poder presenciar el talento y la dedicación que pones en todo lo que haces! Cada proyecto que emprendes es un testimonio de tu compromiso y pasión. Tu capacidad para superar desafíos y convertir cada obstáculo en una oportunidad es verdaderamente inspiradora. Me siento honrado de ser testigo de tu evolución y de aprender de tu ejemplo.']
 lista_frases21 = ["me gusta compartir mis conocimientos y colaborar"]
+lista_frases21 = ["Sería espantoso y aterrador que esa masa perturbada, inmoral y execrable que colocó en el poder a gobernantes que redactaron la infame ley de amnistía encima tuviera la capacidad de escoger al jefe de Estado.  Menos señalar a Felipe VI y más a su pueblo."]
+
 
 #valores modificables ------------------------------------------------------------------------------------------------------------------------------
 
-revision_manual = False
-verificacion = True
+revision_manual = True
+verificacion = False
 emociones_en_valores = False
 
 #lista de frases y modelos de revision manual
-lista_frases = lista_frases12
+lista_frases = lista_frases21
 listamodelos = [h, FNST_trad_2j, ABL_trad_2h]
 
 emociones = False
-valores_eticos_Schawrtz = False
+valores_eticos_Schawrtz = True
 valores_eticos_Jonathan = False
-ABL = True
-FNST = True
+ABL = False
+FNST = False
 
 #modelos usados en verificacion y emociones_en_valores 
 Schawrtz  = h
@@ -521,7 +523,7 @@ if (verificacion):
 
 
 if (emociones_en_valores):
-    #Emociones_en_valores(ruta_jonathan,Jonathan)
+    Emociones_en_valores(ruta_jonathan,Jonathan)
     Emociones_en_valores(ruta_Schawrtz,Schawrtz)
 
 
